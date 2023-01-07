@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.aya.buildsrc'
+    compileSdkVersion(ConfigData.compileSdkVersion)
+
+    defaultConfig {
+        applicationId "com.aya.buildsrc"
+        minSdk (ConfigData.minSdkVersion)
+        targetSdk (ConfigData.targetSdkVersion)
+        versionCode(ConfigData.versionCode)
+        versionName (ConfigData.versionName)
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation(Deps.core)
+    implementation (Deps.appCompat)
+    implementation (Deps.materialDesign)
+    implementation (Deps.constraintLayout)
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    testImplementation (Deps.junit)
+    androidTestImplementation (Deps.testExt)
+    androidTestImplementation (Deps.testEspresso)
+}
